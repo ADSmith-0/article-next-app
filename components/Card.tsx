@@ -5,13 +5,15 @@ import { CardType } from '../Types/CardType';
 export default function Card({ image, title, domain, date, content, tag }:CardType) {
     return (
         <article id={container}>
-            <Image 
-                id={cover_image}
-                src={image || '/images/placeholder.jpg'}
-                height={200}
-                width={200}
-                alt={title+" cover image"}
-            />
+            <div id={styles.img_container}>
+                <Image 
+                    id={cover_image}
+                    src={image || '/images/placeholder.jpg'}
+                    height={250}
+                    width={350}
+                    alt={title+" cover image"}
+                />
+            </div>
             <div id={inline}>
                 <h2 className={styles.title}>{title}</h2>
                 <button id={bookmark}>Bookmark</button>
