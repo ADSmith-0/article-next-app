@@ -1,0 +1,13 @@
+#navbar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    border-bottom: 1px solid #333;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: flex-end; */
+    gap: 60px;
+}
+#navbar:first-child {
+    padding-left: 70px;
+}

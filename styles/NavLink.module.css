@@ -1,0 +1,11 @@
+.link {
+    box-sizing: border-box;
+    padding: 20px;
+    line-height: 1.5rem;
+    color: #777;
+}
+.link:hover { color: #3586ff; }
+.active {
+    color: #0d6efd;
+    text-shadow: 0 0 1px #0d6efd;
+}
