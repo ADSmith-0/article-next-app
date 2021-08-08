@@ -7,7 +7,7 @@ export default function Card({ image, title, domain, date, content, tag }:CardTy
         <article id={container}>
             <Image 
                 id={cover_image}
-                src={image}
+                src={image || '/images/placeholder.jpg'}
                 height={200}
                 width={200}
                 alt={title+" cover image"}

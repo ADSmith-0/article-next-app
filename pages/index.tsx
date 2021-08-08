@@ -1,8 +1,29 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Card from '../components/Card';
-export default function Home() {
+import { CardType } from '../Types/CardType';
+import { GetStaticProps } from 'next';
+export const getStaticProps:GetStaticProps = async () => {
+    const sportArticles = await fetch('https://anderspink.com/code-test/data/sports.json?errors=0').then(res => {
+        if(res.ok) return res.json();
+        return [];
+    });
+    const marketingArticles = await fetch('https://anderspink.com/code-test/data/marketing.json?errors=0').then(res => {
+        if (res.ok) return res.json();
+        return [];
+    });
+    const environmentArticles = await fetch('https://anderspink.com/code-test/data/marketing.json?errors=0').then(res => {
+        if (res.ok) return res.json();
+        return [];
+    });
+    const articles = [...sportArticles, ...marketingArticles, ...environmentArticles];
+    return {
+        props: {
+            articles: articles
+        }
+    }
+}
+export default function Home({ articles }:any) {
   return (
     <>
       <Head>
@@ -11,17 +32,18 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <h1 className={styles.title}>
-            Hello
-        </h1>
-        <Card 
-            image="/images/image1.png"
-            title="test"
-            domain="www.google.co.uk"
-            date="2nd August 2021"
-            content="hello"
-            tag="Sports"
-        />
+        <h1 className={styles.title}>Articles Archive</h1>
+        { articles.map((article:CardType, index:number) => (
+            <Card
+                key={index}
+                image={article.image}
+                title={article.title}
+                domain={article.domain}
+                date={article.date}
+                content={article.content}
+                tag="Sports"
+            />
+        ))}
       </main>
     </>
   )
