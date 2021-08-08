@@ -20,6 +20,7 @@ export default function Card({ image, title, domain, date, content, tag }:CardTy
             </div>
             <section id={meta_info}>
                 <a id={domain_link} href={"https://"+domain}>{domain}</a>
+                {/* new Date() - new Date(date) */}
                 <h3 id={styles.date}>{date}</h3>
             </section>
             <p id={styles.content}>{content}</p>

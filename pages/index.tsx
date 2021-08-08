@@ -4,21 +4,36 @@ import Card from '../components/Card';
 import { CardType } from '../Types/CardType';
 import { GetStaticProps } from 'next';
 export const getStaticProps:GetStaticProps = async () => {
-    const sportArticles = await fetch('https://anderspink.com/code-test/data/sports.json?errors=0').then(res => {
+    const sportResponse = await fetch('https://anderspink.com/code-test/data/sports.json?errors=0').then(res => {
         if(res.ok) return res.json();
         return [];
     });
-    const marketingArticles = await fetch('https://anderspink.com/code-test/data/marketing.json?errors=0').then(res => {
+    const marketingResponse = await fetch('https://anderspink.com/code-test/data/marketing.json?errors=0').then(res => {
         if (res.ok) return res.json();
         return [];
     });
-    const environmentArticles = await fetch('https://anderspink.com/code-test/data/marketing.json?errors=0').then(res => {
+    const environmentResponse = await fetch('https://anderspink.com/code-test/data/marketing.json?errors=0').then(res => {
         if (res.ok) return res.json();
         return [];
+    });
+
+    const sportArticles = sportResponse.map((article:CardType) => {
+        article.tag = "Sports";
+        return article;
+    });
+    const marketingArticles = marketingResponse.map((article:CardType)=> {
+        article.tag = "Marketing";
+        return article;
+    });
+    const environmentArticles = environmentResponse.map((article: CardType) => {
+        article.tag = "Environment";
+        return article;
     });
     const articles = [...sportArticles, ...marketingArticles, ...environmentArticles];
     return {
         props: {
+            // @ts-ignore
+            // articles.sort((a: object, b: object) => new Date(b.date) - new Date(a.date))
             articles: articles
         }
     }
@@ -41,7 +56,7 @@ export default function Home({ articles }:any) {
                 domain={article.domain}
                 date={article.date}
                 content={article.content}
-                tag="Sports"
+                tag={article.tag}
             />
         ))}
       </main>
