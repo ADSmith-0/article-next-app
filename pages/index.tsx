@@ -4,15 +4,15 @@ import Card from '../components/Card';
 import { CardType } from '../Types/CardType';
 import { GetStaticProps } from 'next';
 export const getStaticProps:GetStaticProps = async () => {
-    const sportResponse = await fetch('https://anderspink.com/code-test/data/sports.json?errors=0').then(res => {
+    const sportResponse = await fetch('https://anderspink.com/code-test/data/sports.json').then(res => {
         if(res.ok) return res.json();
         return [];
     });
-    const marketingResponse = await fetch('https://anderspink.com/code-test/data/marketing.json?errors=0').then(res => {
+    const marketingResponse = await fetch('https://anderspink.com/code-test/data/marketing.json').then(res => {
         if (res.ok) return res.json();
         return [];
     });
-    const environmentResponse = await fetch('https://anderspink.com/code-test/data/marketing.json?errors=0').then(res => {
+    const environmentResponse = await fetch('https://anderspink.com/code-test/data/marketing.json').then(res => {
         if (res.ok) return res.json();
         return [];
     });
