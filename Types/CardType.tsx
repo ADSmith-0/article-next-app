@@ -2,7 +2,7 @@ export type CardType = {
     image: string,
     title: string, 
     domain: string, 
-    date: Date, 
+    date: string, 
     content: string, 
     tag: 'Sports' | 'Marketing' | 'Environment'
 }
